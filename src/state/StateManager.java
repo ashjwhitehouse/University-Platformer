@@ -12,8 +12,8 @@ public class StateManager {
 	
 	private ArrayList<State> states;
 	
-	public static final int stMenu = 0;
-	public static final int stLvl1 = 1;
+	public static final int stateMenu = 0;
+	public static final int stateLvl1 = 1;
 	
 	public StateManager() {
 		
@@ -21,6 +21,7 @@ public class StateManager {
 		
 		currentState = 0;
 		states.add(new StateMenu(this));
+		states.add(new StateLvl1(this));
 		
 	}
 	
