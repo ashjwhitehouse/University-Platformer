@@ -14,7 +14,7 @@ public class StateMenu extends State {
 	
 	private int currentSelection = 0;
 	private String[] options = {
-			"Start", "Help", "Quit"
+			"Start", "Options", "Quit"
 	};
 	
 	private Color titleColour;
@@ -28,7 +28,7 @@ public class StateMenu extends State {
 		
 		try {
 			
-			bg = new Background("/Backgrounds/menu.gif", 1);
+			bg = new Background("/backgrounds/menu.gif", 1);
 			
 			titleColour = new Color(239,255,232);
 			selectColour = new Color(0,236,255);
@@ -77,14 +77,14 @@ public class StateMenu extends State {
 		
 		// User selects start
 		if(currentSelection == 0) {
-			
+			mgr.stateSet(StateManager.stateLvl1);
 		}
 		// User selects help
 		if(currentSelection == 1) {
 			
 		}
 		// User quits
-		else {
+		if(currentSelection == 2) {
 			System.exit(0);
 		}
 	}
