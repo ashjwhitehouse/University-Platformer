@@ -1,26 +1,20 @@
 package tilemap;
 
-import main.GamePanel;
-import java.awt.*;
-import java.awt.image.*;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+
+import main.GameWindow;
 
 public class Background {
 	
 	private BufferedImage image;
+	private double x, y, x2, y2, pa;
 	
-	private double x;
-	private double y;
-	private double xx;
-	private double yy;
-	
-	private double moveScale;
-	
-	public Background(String s, double ms) {
-		
+	public Background(String string, double pams) {
 		try {
-			image = ImageIO.read(getClass().getResourceAsStream(s));
-			moveScale = ms;
+			image = ImageIO.read(getClass().getResourceAsStream(string));
+			pa = pams;
 		}
 		catch(Exception exception) {
 			exception.printStackTrace();
@@ -29,30 +23,29 @@ public class Background {
 	}
 	
 	public void setPosition(double x, double y) {
-		this.x = (x * moveScale) % GamePanel.winWidth;
-		this.y = (y * moveScale) % GamePanel.winHeight;
+		this.x = (x * pa) % GameWindow.WIDTH;
+		this.y = (y * pa) % GameWindow.HEIGHT;
+		
 	}
 	
-	public void setVector(double xx, double yy) {
-		this.xx = xx;
-		this.yy = yy;
+	public void setVector(double x2, double y2) {
+		this.x2 = x2;
+		this.y2 = y2;
 	}
 	
 	public void update() {
-		x += xx;
-		y += yy;
+		x += x2;
+		y += y2;
 	}
 	
-	public void draw(Graphics2D g) {
-		
-		g.drawImage(image, (int)x, (int)y, null);
-		
+	public void draw(Graphics2D graphics) {
+		graphics.drawImage(image, (int)x, (int)y, null);
 		if(x < 0) {
-			g.drawImage(image, (int)x + GamePanel.WIDTH, (int)y, null);
+			graphics.drawImage(image, (int)x + GameWindow.WIDTH, (int)y, null);
 		}
 		if(x > 0) {
-			g.drawImage(image, (int)x - GamePanel.WIDTH, (int)y, null);
+			graphics.drawImage(image, (int)x - GameWindow.WIDTH, (int)y, null);
 		}
 	}
-	
+
 }
