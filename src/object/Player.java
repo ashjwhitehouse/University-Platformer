@@ -19,6 +19,8 @@ public class Player extends Object {
 	private boolean attacking;
 	@SuppressWarnings("unused")
 	private int damage, reach;
+	
+	public static int playerLevel;
 
 	// Player animations
 	private ArrayList<BufferedImage[]> sprites;
@@ -38,7 +40,7 @@ public class Player extends Object {
 		flip = true;
 		width = 52;
 		height = 34;
-		hitboxWidth = 42;
+		hitboxWidth = 30;
 		hitboxHeight = 24;
 		speed = 0.3;
 		topSpeed = 1.6;
@@ -100,6 +102,23 @@ public class Player extends Object {
 	
 	public void setAttacking() {
 		attacking = true;
+	}
+	
+	public void setDead() {
+		dead = true;
+	}
+	
+	public void fillLives() {
+		dead = false;
+		lives = maxLives;
+	}
+	
+	public void setPlayerLevel(int i) {
+		Player.playerLevel = i;
+	}
+	
+	public static int getPlayerLevel() {
+		return playerLevel;
 	}
 	
 	private void getNextPos() {

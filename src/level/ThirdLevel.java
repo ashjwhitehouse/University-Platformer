@@ -15,7 +15,7 @@ import tilemap.Background;
 import tilemap.Tilemap;
 
 @SuppressWarnings("unused")
-public class FirstLevel extends Level {
+public class ThirdLevel extends Level {
 	
 	private Tilemap tilemap;
 	private Color clearScreen;
@@ -25,7 +25,7 @@ public class FirstLevel extends Level {
 	private ArrayList<Enemy> enemies;
 	private Flag flag;
 	
-	public FirstLevel(LevelController ctrl) {
+	public ThirdLevel(LevelController ctrl) {
 		this.ctrl = ctrl;
 		init();
 	}
@@ -35,13 +35,13 @@ public class FirstLevel extends Level {
 		
 		tilemap = new Tilemap(30);
 		tilemap.prepareTiles("/tilesets/tileset1.gif");
-		tilemap.prepareMap("/maps/level1.map");
+		tilemap.prepareMap("/maps/level3.map");
 		tilemap.setPos(0, 0);
 		tilemap.setTransitionSpeed(1);
 		
 		player = new Player(tilemap);
-		player.setPos(100, 300);
-		player.setPlayerLevel(1);
+		player.setPos(222, 672);
+		player.setPlayerLevel(3);
 		//player.fillLives();
 		
 		populate();
@@ -55,7 +55,8 @@ public class FirstLevel extends Level {
 		
 		Squirrel squirrel;
 		Point[] points = new Point[] {
-				new Point(840, 100), new Point(880, 100)//, new Point(1525, 200), new Point(1680, 200), new Point(1800, 200)
+				new Point(580, 530), new Point(1051, 765), new Point(1165, 765), new Point(1263, 765), new Point(1300, 765), 
+				new Point(980, 765), new Point(1673, 328), new Point(1771, 328), new Point(1864, 485), new Point(1754, 728)
 		};
 		for(int i = 0; i < points.length; i++) {
 			squirrel = new Squirrel(tilemap);
@@ -72,11 +73,11 @@ public class FirstLevel extends Level {
 		
 		player.checkAttack(enemies);
 		
-		if(player.getx() > 1270) {
+		if(player.getx() > 1900 && player.gety() > 600) {
 			ctrl.setLevel(LevelController.VICTORY);
 		}
 		
-		if(player.gety() > 380) {
+		if(player.gety() > 870) {
 			player.setDead();
 		}
 		
